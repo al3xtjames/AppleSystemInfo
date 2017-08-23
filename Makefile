@@ -26,10 +26,10 @@ $(OBJECT_DIR)/asi_test.o: $(SOURCE_DIR)/AppleSystemInfo.c
 $(OBJECT_DIR)/%.o: $(TEST_DIR)/%.c
 	$(CC) -o $@ -c $< $(CFLAGS) -I $(INCLUDE_DIR)
 
-dump_features: $(SOURCE_DIR)/dump_features.c
+dump_features: $(SOURCE_DIR)/util/dump_features.c
 	$(CC) -o $(OUTPUT_DIR)/$@ $< $(CFLAGS) -F $(FRAMEWORK_DIRS) $(FRAMEWORKS_ASI) -I $(INCLUDE_DIR)
 
-test_features: $(TEST_FEAT_DEPS) $(SOURCE_DIR)/dump_features.c
+test_features: $(TEST_FEAT_DEPS) $(SOURCE_DIR)/util/dump_features.c
 	$(CC) -o $(OUTPUT_DIR)/$@ $^ $(CFLAGS) -D TEST_FEATURES $(FRAMEWORKS) -I $(INCLUDE_DIR)
 
 test_impl: $(TESTER_DEPS) $(TEST_DIR)/test.c
