@@ -1,5 +1,5 @@
 CC := clang
-CFLAGS := -O2 -std=c99 -g -O0
+CFLAGS := -Os -std=c99
 
 INCLUDE_DIR := include
 OBJECT_DIR := obj
@@ -9,7 +9,7 @@ TEST_DIR := test
 
 FRAMEWORK_DIRS := /System/Library/PrivateFrameworks
 FRAMEWORKS := -framework CoreFoundation -framework IOKit
-FRAMEWORKS_ASI := -framework AppleSystemInfo -framework CoreFoundation -framework IOKit
+FRAMEWORKS_ASI := -framework AppleSystemInfo $(FRAMEWORKS)
 
 
 TEST_FEAT_DEPS := $(OBJECT_DIR)/asi.o

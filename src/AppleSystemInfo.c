@@ -10,9 +10,6 @@
 
 int TEST_FUNCTION(GetIOPlatformFeature)(void)
 {
-#ifdef OVERRIDE_PLATFORM_FEATURE
-    return OVERRIDE_PLATFORM_FEATURE;
-#else
     mach_port_t master_port = 0;
     io_registry_entry_t path = 0;
     CFTypeRef platform_feature = NULL;
@@ -52,7 +49,6 @@ int TEST_FUNCTION(GetIOPlatformFeature)(void)
     {
         return 0;
     }
-#endif
 }
 
 // this is garbage
