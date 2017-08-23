@@ -1,7 +1,6 @@
 #ifndef ASI_APPLE_SYSTEM_INFO_H_
 #define ASI_APPLE_SYSTEM_INFO_H_
 
-#include <mach/mach.h>
 #include <stdbool.h>
 
 #include <IOKit/IOKitLib.h>

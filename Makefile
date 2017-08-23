@@ -34,7 +34,7 @@ test_features: $(TEST_FEAT_DEPS) $(SOURCE_DIR)/util/dump_features.c
 
 test_impl: $(TESTER_DEPS) $(TEST_DIR)/test.c
 	$(CC) -o $(OUTPUT_DIR)/$@ $^ $(CFLAGS) -F $(FRAMEWORK_DIRS) $(FRAMEWORKS_ASI) -I $(INCLUDE_DIR)
-	@$(OBJECT_DIR)/test_impl
+	@$(OUTPUT_DIR)/test_impl
 
 .PHONY: clean
 clean:

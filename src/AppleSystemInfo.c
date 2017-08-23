@@ -1,3 +1,6 @@
+#include <mach/mach.h>
+#include <sys/sysctl.h>
+
 #include <AppleSystemInfo/AppleSystemInfo.h>
 
 // Macro for adding RE_ prefix to function names when testing against original
@@ -51,17 +54,36 @@ int TEST_FUNCTION(GetIOPlatformFeature)(void)
     }
 }
 
-// this is garbage
-CFStringRef ASI_CopyComputerModelName(bool longForm)
+CFStringRef ASI_CopyComputerModelName(bool modelID)
 {
-    if (longForm)
+    size_t len = 1024;
+    char model_name[1024];
+    int mib[2];
+    CFStringRef cf_model_name;
+
+    mib[0] = CTL_HW;
+    mib[1] = HW_MODEL;
+    if (sysctl(mib, 2, model_name, &len, NULL, 0))
     {
+        cf_model_name = CFStringCreateWithCString(kCFAllocatorDefault,
+                                                  "Unknown", kCFStringEncodingASCII);
+        return cf_model_name;
+    }
+
+    cf_model_name = CFStringCreateWithCString(kCFAllocatorDefault, model_name,
+                                              kCFStringEncodingASCII);
+    if (!cf_model_name)
+    {
+        // Localization unimplemented
         return NULL;
     }
-    else
+
+    if (modelID)
     {
-        return CFSTR("iMac13,2");
+        return cf_model_name;
     }
+
+    return NULL;
 }
 
 #ifdef TEST_FEATURES

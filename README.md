@@ -1,7 +1,7 @@
 # AppleSystemInfo
 
 ### Source
-An incomplete reverse-engineered implementation of AppleSystemInfo.framework
+An incomplete, poorly reverse-engineered implementation of AppleSystemInfo.framework
 is available in the `src` directory, along with an incomplete header in the
 `include/AppleSystemInfo` directory. The reverse-engineered implementation can
 be tested against the system implementation by running `make test_impl`:
@@ -45,7 +45,9 @@ system, using the system implementation of AppleSystemInfo.framework.
 
 `test_features` allows you to check the supported platform features for an input
 `platform-feature` value, using the reverse-engineered implementation of
-AppleSystemInfo.framework.
+AppleSystemInfo.framework. Note that this doesn't let you override the SMBIOS
+product name, which is needed for proper checking of platform feature 0x02 for
+certain Mac models (e.g. MacBookPro10,x/MacBookAir).
 
     $ make
     $ out/test_features 0x18
