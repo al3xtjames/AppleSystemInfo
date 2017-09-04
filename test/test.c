@@ -21,7 +21,7 @@ int main()
 
     if (failed_tests)
     {
-        printf("%d test(s) failed, %d tests completed successfully\n",
+        printf("%d test(s) failed, %d test(s) completed successfully\n",
                failed_tests, passed_tests);
 
         return 1;
